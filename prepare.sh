@@ -2,7 +2,7 @@
 read -p "Enter your assigned ip-address: " NEW_IP
 NOOBS_ROOT=$PWD/NOOBS
 NEW_ARCHIVE=$PWD/newArchive
-INTERFACES=$(cat <<_EOF_
+INTERFACES=$(cat <<_EOINTERFACES_
 auto lo
 
 iface lo inet loopback
@@ -18,7 +18,7 @@ allow-hotplug wlan0
 iface wlan0 inet manual
 wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 iface default inet dhcp
-_EOF_
+_EOINTERFACES_
 )
 
 FLAVOURS=$(cat <<_EOFLAVOURS_
@@ -31,7 +31,8 @@ FLAVOURS=$(cat <<_EOFLAVOURS_
     }
   ]
 }
-_EOFLAVOURS_)
+_EOFLAVOURS_
+)
 
 OS=`uname`
 function checkIfInstalled {
