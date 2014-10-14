@@ -42,6 +42,8 @@ function checkIfInstalled {
       brew install $1 || echo "Brew not available"; exit 1;
     elif [[ $OS == "Linux" ]]; then
       sudo apt-get install $1 || echo "apt-get not available"; exit 1;
+    elif [[ $OS =~ "^CYGWIN" ]]; then
+      echo "You're running cygwin, close shell, run setup and install $1 and come back!"; exit 1;
     else
       echo "You lack $1 and have no suitable package manager for me to download it, please install $1 and come back!"
       exit 1
