@@ -39,11 +39,12 @@ function checkIfInstalled {
   command -v $1 >/dev/null 2>&1 || { 
     echo >&2 "I require $1 but it's not installed, trying to install...";
     if [[ $OS == "Darwin" ]]; then
-      brew install $1
+      brew install $1 || echo "Brew not available"; exit 1;
     elif [[ $OS == "Linux" ]]; then
-      sudo apt-get install $1
+      sudo apt-get install $1 || echo "apt-get not available"; exit 1;
     else
       echo "You lack $1 and have no suitable package manager for me to download it, please install $1 and come back!"
+      exit 1
     fi  
   }
 }
