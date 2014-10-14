@@ -1,6 +1,6 @@
 #!/bin/bash
 read -p "Enter your assigned ip-address: " NEW_IP
-curl http://server.mejsla.se/metrics/$NEW_IP
+curl -f --silent http://server.mejsla.se/metrics/$NEW_IP
 NOOBS_ROOT=$PWD/NOOBS
 NEW_ARCHIVE=$PWD/newArchive
 INTERFACES=$(cat <<_EOINTERFACES_
