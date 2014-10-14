@@ -142,6 +142,5 @@ cd $NOOBS_ROOT/os/Raspbian/ && xz root.tar &
     printf "\b\b\b\b\b\b"
   done
 
-echo "Done, copy files to SD card and reboot you pi"
-echo "Don't forget apt-get update && apt-get upgrade before doing anything else"
+echo "Done, copy files under $NOOBS_ROOT to SD card and reboot you pi"
 
