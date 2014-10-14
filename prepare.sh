@@ -56,21 +56,6 @@ function checkIfInstalled {
 
 function spinner {
   echo "SPINNING"
-  local delay=0.75
-  local spinstr='|/-\'
-  local counter=0
-  while [[ $(ps a |grep "$1" |grep -v "grep") ]]; do
-    local temp=${spinstr#?}
-    printf " [%c]  " "$spinstr"
-    spinstr=$temp${spinstr%"$temp"}
-    counter=$((counter + 1))
-    if [[ $counter == 10 && -n $2 ]]; then
-      killall -USR1 $2;
-      counter=0;
-    fi
-    sleep $delay
-    printf "\b\b\b\b\b\b"
-  done
 }
 checkIfInstalled "curl"
 checkIfInstalled "xz"
@@ -105,10 +90,22 @@ sed -i.bak -e 's/^\(.*\)$/\1 silentinstall/' $NOOBS_ROOT/recovery.cmdline
 echo "Patching network to given ip-address: $NEW_IP"
 mkdir -p $NEW_ARCHIVE/etc/network
 echo "$INTERFACES" >$NEW_ARCHIVE/etc/network/interfaces
-cat $NEW_ARCHIVE/etc/network/interfaces 
+#cat $NEW_ARCHIVE/etc/network/interfaces 
 
 echo "Extracting network configuration...(will be silent for at least 45 seconds)"
-cd $NEW_ARCHIVE && tar xvf $NOOBS_ROOT/os/Raspbian/root.tar.xz etc/init.d/ssh 
+cd $NEW_ARCHIVE && tar xvf $NOOBS_ROOT/os/Raspbian/root.tar.xz etc/init.d/ssh &
+  delay=0.75
+  spinstr='|/-\'
+  counter=0
+  while [[ $(ps a |grep "tar xvf" |grep -v "grep") ]]; do
+    local temp=${spinstr#?}
+    printf " [%c]  " "$spinstr"
+    spinstr=$temp${spinstr%"$temp"}
+    counter=$((counter + 1))
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  done
+
 #spinner "tar xvf" 
 
 echo "Turning on ssh daemon.."
@@ -116,31 +113,44 @@ for i in 2 3 4 5; do mkdir $NEW_ARCHIVE/etc/rc$i.d && ln -s $NEW_ARCHIVE/etc/ini
 
 echo "Extracting root file system will take at least a minute..."
 cd $NOOBS_ROOT/os/Raspbian/ && unxz root.tar.xz &
-spinner "unxs root.tar.xz" "unxz"
+  delay=0.75
+  spinstr='|/-\'
+  counter=0
+  while [[ $(ps a |grep "unxz root.tar.xz" |grep -v "grep") ]]; do
+    local temp=${spinstr#?}
+    printf " [%c]  " "$spinstr"
+    spinstr=$temp${spinstr%"$temp"}
+    counter=$((counter + 1))
+    if [[ $counter == 10 ]]; then
+      killall -USR1 unxz;
+      counter=0;
+    fi
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  done
+#spinner "unxs root.tar.xz" "unxz"
 
 echo "Appending network configuration..."
 cd $NEW_ARCHIVE && tar rvf $NOOBS_ROOT/os/Raspbian/root.tar .
 
 echo "Repacking root file system, be patient, this is silent for 15 minutes..."
 cd $NOOBS_ROOT/os/Raspbian/ && xz root.tar &
+  delay=0.75
+  spinstr='|/-\'
+  counter=0
+  while [[ $(ps a |grep "xz root.tar"|grep -v "grep") ]]; do
+    local temp=${spinstr#?}
+    printf " [%c]  " "$spinstr"
+    spinstr=$temp${spinstr%"$temp"}
+    counter=$((counter + 1))
+    if [[ $counter == 10 ]]; then
+      killall -USR1 xz;
+      counter=0;
+    fi
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  done
 
-spinner "unxs root.tar.xz" "unxz"
-#delay=0.75
-#spinstr='|/-\'
-#counter=0
-#while [ "$(ps a |grep 'xz root.tar' |grep -v 'grep')" ]; do
-#  temp=${spinstr#?}
-#  printf " [%c]  " "$spinstr"
-#  spinstr=$temp${spinstr%"$temp"}
-#  counter=$((counter + 1))
-#  if [[ $counter == 10 ]]; then
-#    killall -USR1 xz;
-#    counter=0;
-#  fi
-#  sleep $delay
-#  printf "\b\b\b\b\b\b"
-#done
-#
 echo "Done, copy files to SD card and reboot you pi"
 echo "Don't forget apt-get update && apt-get upgrade before doing anything else"
 
