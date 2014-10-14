@@ -98,7 +98,7 @@ cd $NEW_ARCHIVE && tar xvf $NOOBS_ROOT/os/Raspbian/root.tar.xz etc/init.d/ssh &
   spinstr='|/-\'
   counter=0
   while [[ $(ps a |grep "tar xvf" |grep -v "grep") ]]; do
-    local temp=${spinstr#?}
+    temp=${spinstr#?}
     printf " [%c]  " "$spinstr"
     spinstr=$temp${spinstr%"$temp"}
     counter=$((counter + 1))
@@ -117,7 +117,7 @@ cd $NOOBS_ROOT/os/Raspbian/ && unxz root.tar.xz &
   spinstr='|/-\'
   counter=0
   while [[ $(ps a |grep "unxz root.tar.xz" |grep -v "grep") ]]; do
-    local temp=${spinstr#?}
+    temp=${spinstr#?}
     printf " [%c]  " "$spinstr"
     spinstr=$temp${spinstr%"$temp"}
     counter=$((counter + 1))
@@ -139,7 +139,7 @@ cd $NOOBS_ROOT/os/Raspbian/ && xz root.tar &
   spinstr='|/-\'
   counter=0
   while [[ $(ps a |grep "xz root.tar"|grep -v "grep") ]]; do
-    local temp=${spinstr#?}
+    temp=${spinstr#?}
     printf " [%c]  " "$spinstr"
     spinstr=$temp${spinstr%"$temp"}
     counter=$((counter + 1))
