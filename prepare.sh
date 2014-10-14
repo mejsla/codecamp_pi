@@ -33,20 +33,14 @@ FLAVOURS=$(cat <<_EOFLAVOURS_
 }
 _EOFLAVOURS_)
 
-#if [ "$#" -ne 3 ]; then
-#  echo "Usage: bash prepare.sh <ip-address> [<username>] [<gw-address>]"
-#  exit 1 
-#fi
 OS=`uname`
 function checkIfInstalled {
   echo "Checking if $1 is available..."
   command -v $1 >/dev/null 2>&1 || { 
     echo >&2 "I require $1 but it's not installed, trying to install...";
     if [[ $OS == "Darwin" ]]; then
-#      command -v brew >/dev/null 2>&1 || {echo "OSX but no homebrew, can't install";exit 1;}
       brew install $1
     elif [[ $OS == "Linux" ]]; then
-#      command -v apt-get >/dev/null 2>&1 || {echo "Linux but no apt-get, can't install";exit 1;}
       sudo apt-get install $1
     else
       echo "You lack $1 and have no suitable package manager for me to download it, please install $1 and come back!"
@@ -54,9 +48,6 @@ function checkIfInstalled {
   }
 }
 
-function spinner {
-  echo "SPINNING"
-}
 checkIfInstalled "curl"
 checkIfInstalled "xz"
 checkIfInstalled "unxz"
@@ -76,15 +67,10 @@ mkdir $NEW_ARCHIVE
 echo "Removing unnecessary stuff..."
 find $NOOBS_ROOT/os/ -maxdepth 1 -type d -not -name 'os' -not -name 'Raspbian' -exec rm -rf {} \;
 
-#if [[ -n $USER_NAME && -n $USER_PASSWORD ]]; then
-#  echo "Setting user/pw"
-#  sed -i.bak -e 's/pi/'$USER_NAME'/' -e 's/raspberry/'$USER_PASSWORD'/' $NOOBS_ROOT/os/Raspbian/os.json
-#fi
-
 echo "Pasting flavours..."
 echo "$FLAVOURS" > $NOOBS_ROOT/os/Raspbian/flavours.json
 
-echo "Setting silent install"o
+echo "Setting silent install"
 sed -i.bak -e 's/^\(.*\)$/\1 silentinstall/' $NOOBS_ROOT/recovery.cmdline
 
 echo "Patching network to given ip-address: $NEW_IP"
