@@ -15,9 +15,16 @@ Scriptet tar ca 15-20 min, och därför är det bra om vi slipper ta tid från s
 
 (Kör ni windows kommer ni behöva köra detta i cygwin, dock är detta helt otestat)
 
-För att detta ska fungera så behöver ni ha ett antal verktyg installerade, vilka även kontrolleras efter i scriptet: curl, xz, unzip, sed
+För att detta ska fungera så behöver ni ha ett antal verktyg installerade, vilka även kontrolleras efter i scriptet:
+```
+curl
+xz
+unzip
+sed
+```
+I OSX och Linux så finns det en chans att scriptet automatiskt hanterar detta, om ni har homebrew på mac eller apt-get på linux.
 
-Ni med cygwin måste installera detta manuellt, men på osx med homebrew och linux med apt-get så bör de kommandon som inte finns installeras automatiskt.
+Ni med cygwin måste installera detta manuellt, passa på när ni installerar [cygwin](https://www.cygwin.com) (om ni inte redan har det)
 
 Efter scriptet är kört, bör ni ha en katalog under den ni körde scriptet i som innehåller:
 ```BUILD-DATA
