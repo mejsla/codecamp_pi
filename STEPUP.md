@@ -1,7 +1,7 @@
-Förberedelser Code camp Raspberry pi 2014
-=========================================
+Förberedelser inför Stepup inför Code camp Raspberry pi 2014
+============================================================
 
-Gör detta innan förberedelse-stepup:en
+Gör detta innan stepup:en
 
 - Leta upp en obokad ip-adress i arket nedan, fyll i ert namn och lägg ip-adressen på minnet
 https://docs.google.com/a/mejsla.se/spreadsheets/d/1GTOoq3T8mp-kTrRYGb4eVAId90KPvLMou7PSaE2tQck/edit?usp=sharing
@@ -34,4 +34,8 @@ recovery.rfs
 riscos-boot.bin
 ```
 
-Allt detta skall kopieras över till ett nyformaterat sd-kort med en FAT32-partition som fyller hela kortet.
+Under stepup:en skall detta kopieras över till det microSD-kort ni får. 
+
+Har ni kommit så här långt, så kan ni slappna av och känna er duktiga och förberedda inför stepup:en!
+
+Välkomna!
