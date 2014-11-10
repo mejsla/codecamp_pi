@@ -6,7 +6,7 @@
 * [Växthusvakten](GREENHOUSE.md)
 * [Övervakaren](SURVEILLANCE.md)
 * [Sous vide-kokare](SOUS_VIDE.md)
-* [Sommarstugevakten](CABIN_WATCH.md)
+* [Smart home automation](SMART_HOME.md)
 
 ## Deltagare
 
