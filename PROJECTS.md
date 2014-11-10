@@ -1,6 +1,8 @@
 # Codecamp FAQ
 
-Projekt
+## Inledning
+
+## Projekt
 * [Växthusvakten](GREENHOUSE.md)
 * [Övervakaren](SURVEILLANCE.md)
 * [Sous vide-kokare](SOUS_VIDE.md)
@@ -9,3 +11,5 @@ Projekt
 ## Deltagare
 
 ## Bra länkar
+
+## Tips och tricks
