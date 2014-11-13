@@ -19,5 +19,7 @@ Med värden från temperatursensor ska Pi:en känna av och styra en värmekälla
 ## bra länkar
 
 [Recept](http://www.barariktigmat.se/index.php/teknik/sous-vide)
+
 [Liknande projekt 1](http://www.raspberrypi.org/sous-vide-cooking-with-the-wolfram-language/)
+
 [Liknande projekt 2](http://raspibrew.com/)
