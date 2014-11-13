@@ -7,7 +7,7 @@ Gör detta innan stepup:en
 https://docs.google.com/a/mejsla.se/spreadsheets/d/1GTOoq3T8mp-kTrRYGb4eVAId90KPvLMou7PSaE2tQck/edit?usp=sharing
 
 - För att kapa lite tid, så vill vi att alla öppnar en terminal, skapar en tom katalog, och i den kör följande kommando:
-```bash <(curl https://raw.githubusercontent.com/mejsla/codecamp_pi/master/prepare.sh)```
+```bash <(curl https://raw.githubusercontent.com/mejsla/codecamp_pi/master/scripts/prepare.sh)```
 
 Ni kommer att behöva ange ip-adressen från arket innan.
 
